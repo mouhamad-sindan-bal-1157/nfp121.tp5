@@ -14,34 +14,52 @@ public class Ensemble<T> extends AbstractSet<T> {
 		return table.iterator();
 	}
 
-	public boolean add(T t) {
-		// à compléter pour la question1-1
+	public boolean add(T t) {//q1-1
+			if(this.table.contains(t)){
+				return false;
+			} else {
+				this.table.add(t);
+				return true;
+			} 
+		}
 
-		return false;
-	}
 
-	public Ensemble<T> union(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
+	public Ensemble<T> union(Ensemble<? extends T> e) {//q1-3
+        Ensemble union = new Ensemble();
+        union.addAll(this);
+        union.addAll(e);
+        return union; 
+    }
+    /**
+     * Intersection.
+     * @param e ensemble
+     * @return intersection des ensembles
+     */
+    public Ensemble<T> inter(Ensemble<? extends T> e) {//q1-3
+        Ensemble inter = new Ensemble();
+        inter.addAll(this);
+        inter.retainAll(e);
+        return inter;
+    }
 
-		return null;
-	}
 
-	public Ensemble<T> inter(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
+	public Ensemble<T> diff(Ensemble<? extends T> e) {//q1-3
+        Ensemble diff = new Ensemble();
+        diff.addAll(this);
+        diff.removeAll(this.inter(e));
+        return diff; 
+    }
+    /**
+     * difference symetrique.
+     * @param e ensemble
+     * @return difference symetrique entre des ensembles(inverse d'intersection)
+     */
+    Ensemble<T> diffSym(Ensemble<? extends T> e) {//q1-3
+        Ensemble diffSym = new Ensemble();
+        diffSym.addAll(this.union(e));
+        diffSym.removeAll(this.inter(e));
+        return diffSym; 
+    }
 
-		return null;
-	}
-
-	public Ensemble<T> diff(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
-
-		return null;
-	}
-
-	Ensemble<T> diffSym(Ensemble<? extends T> e) {
-		// à compléter pour la question1-2
-
-		return null;
-	}
 	
 }
